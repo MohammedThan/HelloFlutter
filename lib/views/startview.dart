@@ -80,7 +80,7 @@ class startview extends StatelessWidget {
                     ],
                     options: CarouselOptions(
                       autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlayInterval: const Duration(seconds: 5),
                       height: 600.0,
                       enableInfiniteScroll: true,
                     ),
