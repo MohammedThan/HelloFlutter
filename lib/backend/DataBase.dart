@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:convert';
 
 import 'package:hello/backend/Package.dart';
@@ -235,31 +236,59 @@ class DataBase {
   }
 
   //0= no account , 1=customer ,2=employee
-  Login(String email,String password) async {
-    int isUser = 0;
-    await firestore
-        .collection("Employee")
-        .where('Email', isEqualTo: email)
-        .where('Password', isEqualTo: password)
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        isUser = 2;
-      });
-    });
+  // Login(String email,String password) async {
+  //   int isUser = 0;
+  //   await firestore
+  //       .collection("Employee")
+  //       .where('Email', isEqualTo: email)
+  //       .where('Password', isEqualTo: password)
+  //       .get()
+  //       .then((QuerySnapshot querySnapshot) {
+  //     querySnapshot.docs.forEach((doc) {
+  //       isUser = 2;
+  //     });
+  //   });
 
-    await firestore
-        .collection("Customer")
-        .where('Email', isEqualTo: email)
-        .where('Password', isEqualTo: password)
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        isUser = 1;
-      });
-    });
+  //   await firestore
+  //       .collection("Customer")
+  //       .where('Email', isEqualTo: email)
+  //       .where('Password', isEqualTo: password)
+  //       .get()
+  //       .then((QuerySnapshot querySnapshot) {
+  //     querySnapshot.docs.forEach((doc) {
+  //       isUser = 1;
+  //     });
+  //   });
 
-    return isUser;
+  //   return isUser;
+  // }
+
+  Future signIn(String email, String password) async {
+    try {
+      var myUser = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return myUser;
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 
+  signOut(var MyUser) {
+    MyUser.signOut();
+  }
+
+  Future signUp(String email, String password, String name) async {
+    try {
+      var myUser = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      await myUser.user?.updateDisplayName(name);
+      // await myUser.user?.
+      print((myUser.runtimeType));
+
+      return myUser;
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      return "error";
+    }
+  }
 }
