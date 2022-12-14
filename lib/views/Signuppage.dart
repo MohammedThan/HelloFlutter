@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hello/widgets/button.dart';
 import 'package:hello/widgets/formfield.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
 
 import '../widgets/backbutton.dart';
-import '../widgets/button.dart';
 
-import 'package:hello/backend/DataBase.dart';
-
-class Loginpage extends StatelessWidget {
-  const Loginpage({super.key});
+class Signuppage extends StatelessWidget {
+  const Signuppage({super.key});
 
   @override
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
     return Scaffold(
       body: Container(
         color: HexColor('F1F6F5'),
@@ -36,8 +36,25 @@ class Loginpage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Lottie.asset('assets/login.json'),
+                  Lottie.asset('assets/register.json', height: 300),
                   formField(
+                    textcolor: HexColor('472183'),
+                    borderColor: HexColor('472183'),
+                    borderWidth: 2,
+                    icon: Icon(
+                      Icons.person_outline,
+                      color: HexColor('472183'),
+                    ),
+                    hint: 'Full name',
+                    keyboardType: TextInputType.name,
+                    width: 350,
+                    controller: nameController,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  formField(
+                    controller: emailController,
                     borderColor: HexColor('472183'),
                     borderWidth: 2,
                     icon: Icon(Icons.email_outlined, color: HexColor('472183')),
@@ -45,7 +62,6 @@ class Loginpage extends StatelessWidget {
                     textcolor: HexColor('472183'),
                     keyboardType: TextInputType.emailAddress,
                     width: 350,
-                    controller: emailController,
                   ),
                   const SizedBox(
                     height: 20,
@@ -60,31 +76,23 @@ class Loginpage extends StatelessWidget {
                       color: HexColor('472183'),
                     ),
                     hint: 'Password',
-                    width: 350,
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
+                    width: 350,
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   Button(
+                    text: 'Sign Up',
                     fontSize: 20,
-                    height: 40,
+                    width: 250,
+                    height: 50,
+                    onPressed: () {},
                     icon: Icon(
-                      Icons.login_outlined,
+                      Icons.app_registration_outlined,
                       color: HexColor('F1F6F5'),
-                      size: 20,
                     ),
-                    onPressed: () {
-                      DataBase().signIn(
-                          emailController.text.trim(), passwordController.text.trim());
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context) {
-                      //   return const Loginpage();
-                      // }));
-                    },
-                    width: 150,
-                    text: 'Login',
                   ),
                 ],
               ),

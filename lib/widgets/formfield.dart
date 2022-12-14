@@ -15,6 +15,7 @@ class formField extends StatefulWidget {
   TextInputType? keyboardType;
   double borderWidth;
   String? Function(String?)? validator;
+  bool autofocuse;
 
   formField(
       {super.key,
@@ -29,7 +30,8 @@ class formField extends StatefulWidget {
       required this.borderColor,
       this.keyboardType,
       this.borderWidth = 2.0,
-      this.validator});
+      this.validator,
+      this.autofocuse = false});
 
   @override
   State<formField> createState() => _formFieldState();
@@ -41,6 +43,8 @@ class _formFieldState extends State<formField> {
     return SizedBox(
       width: widget.width,
       child: TextFormField(
+        
+        autofocus: widget.autofocuse,
         obscureText: widget.obscureText,
         validator: widget.validator,
         keyboardType: widget.keyboardType,
