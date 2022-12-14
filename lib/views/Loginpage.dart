@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello/views/navagationpage.dart';
 import 'package:hello/widgets/formfield.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
@@ -75,13 +76,15 @@ class Loginpage extends StatelessWidget {
                       color: HexColor('F1F6F5'),
                       size: 20,
                     ),
-                    onPressed: () {
-                      DataBase().signIn(emailController.text.trim(),
+                    onPressed: () async {
+                      await DataBase().signIn(emailController.text.trim(),
                           passwordController.text.trim().toString());
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context) {
-                      //   return const Loginpage();
-                      // }));
+
+                      // ignore: use_build_context_synchronously
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const navgtion();
+                      }));
                     },
                     width: 150,
                     text: 'Login',

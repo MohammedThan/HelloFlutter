@@ -273,7 +273,7 @@ class DataBase {
     }
   }
 
-  void nsignOut() async {
+  void signOut() async {
     await FirebaseAuth.instance.signOut();
   }
 
