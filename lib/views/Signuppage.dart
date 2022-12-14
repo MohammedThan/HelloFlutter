@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello/backend/DataBase.dart';
 import 'package:hello/widgets/button.dart';
 import 'package:hello/widgets/formfield.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -14,7 +15,7 @@ class Signuppage extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     TextEditingController nameController = TextEditingController();
-    TextEditingController phoneController = TextEditingController();
+    TextEditingController locationController = TextEditingController();
     return Scaffold(
       body: Container(
         color: HexColor('F1F6F5'),
@@ -81,6 +82,22 @@ class Signuppage extends StatelessWidget {
                     width: 350,
                   ),
                   const SizedBox(
+                    height: 20,
+                  ),
+                  formField(
+                    controller: locationController,
+                    textcolor: HexColor('472183'),
+                    borderColor: HexColor('472183'),
+                    borderWidth: 2,
+                    icon: Icon(
+                      Icons.location_city_rounded,
+                      color: HexColor('472183'),
+                    ),
+                    hint: 'Location',
+                    keyboardType: TextInputType.phone,
+                    width: 350,
+                  ),
+                  const SizedBox(
                     height: 30,
                   ),
                   Button(
@@ -88,7 +105,14 @@ class Signuppage extends StatelessWidget {
                     fontSize: 20,
                     width: 250,
                     height: 50,
-                    onPressed: () {},
+                    onPressed: () {
+                      DataBase().signUp(
+                          emailController.text.trim(),
+                          emailController.text.trim(),
+                          nameController.text.trim().toString(),
+                          locationController.text.trim());
+                      Navigator.pop(context);
+                    },
                     icon: Icon(
                       Icons.app_registration_outlined,
                       color: HexColor('F1F6F5'),

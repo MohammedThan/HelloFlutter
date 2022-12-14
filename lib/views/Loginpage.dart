@@ -76,8 +76,8 @@ class Loginpage extends StatelessWidget {
                       size: 20,
                     ),
                     onPressed: () {
-                      DataBase().signIn(
-                          emailController.text.trim(), passwordController.text.trim());
+                      DataBase().signIn(emailController.text.trim(),
+                          passwordController.text.trim().toString());
                       // Navigator.push(context,
                       //     MaterialPageRoute(builder: (context) {
                       //   return const Loginpage();

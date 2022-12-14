@@ -266,21 +266,27 @@ class DataBase {
     try {
       var myUser = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      print('Found user');
       return myUser;
     } on FirebaseAuthException catch (e) {
       print(e);
     }
   }
 
-  signOut(var MyUser) {
-    MyUser.signOut();
+  void nsignOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 
-  Future signUp(String email, String password, String name) async {
+  Future signUp(
+      String email, String password, String name, String location) async {
     try {
       var myUser = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-      await myUser.user?.updateDisplayName(name);
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((registeredUser) => firestore.collection('Customer').add({
+                'Email': email,
+                'Name': name,
+                'Location': location,
+              }));
       // await myUser.user?.
       print((myUser.runtimeType));
 
