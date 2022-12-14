@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/views/LoginPage.dart';
+import 'package:hello/views/Signuppage.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
 
@@ -93,9 +94,12 @@ class startview extends StatelessWidget {
                       Icons.login_outlined,
                       color: HexColor('F1F6F5'),
                     ),
-                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const Loginpage();
-                }));},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const Loginpage();
+                      }));
+                    },
                     width: 200,
                     text: 'Login',
                   ),
@@ -111,12 +115,16 @@ class startview extends StatelessWidget {
                           children: [
                         const TextSpan(text: "Don't have an account?\t "),
                         TextSpan(
-                            text: "Sign up",
-                            style: TextStyle(color: Colors.blue),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                print('Entering sign up page');
-                              })
+                          text: "Sign up",
+                          style: TextStyle(color: Colors.blue),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const Signuppage();
+                              }));
+                            },
+                        )
                       ])),
                 ],
               ),
