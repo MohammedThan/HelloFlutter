@@ -109,7 +109,7 @@ class Signuppage extends StatelessWidget {
                       DataBase().signUp(
                           emailController.text.trim(),
                           emailController.text.trim(),
-                          nameController.text.trim(),
+                          nameController.text.trim().toString(),
                           locationController.text.trim());
                       Navigator.pop(context);
                     },
