@@ -328,19 +328,17 @@ class DataBase {
     });
   }
 
-  getpackage({required String trackingnumber}) {
+  Future<dynamic> getpackage({required String trackingnumber}) async {
+    QueryDocumentSnapshot<Object?> packageinfo;
     CollectionReference package = firestore.collection('Package');
-    package
+    dynamic displaypackage = await package
         .where(
           'Tracking',
           isEqualTo: trackingnumber,
         )
         .where('Receiver_Id', isEqualTo: getcurrentuser())
-        .get()
-        .then((value) {
-      value.docs.forEach((element) {
-        print(element.data());
-      });
-    });
+        .get();
+    print(displaypackage.docs[0].data());
+    return displaypackage.docs[0].data();
   }
 }
