@@ -8,8 +8,14 @@ import 'package:hello/backend/Package.dart';
 class DataBase {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  String getcurrentuser() {
+    final User? user = FirebaseAuth.instance.currentUser;
+    final uid = user!.uid;
+    return uid;
+    print(uid);
+  }
+
   addPackage(
-      String Sender_ID,
       String destination,
       String dimensions,
       DateTime finalDate,
@@ -30,7 +36,7 @@ class DataBase {
     firestore
         .collection("Package")
         .add({
-          'Sender_Id': Sender_ID,
+          'Sender_Id': getcurrentuser(),
           'Final_delivery_Date': finalDate,
           'Weight': weight,
           'Insurance_Amount': insurance,
@@ -283,6 +289,7 @@ class DataBase {
       var myUser = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((registeredUser) => firestore.collection('Customer').add({
+                'uid': registeredUser.user!.uid,
                 'Email': email,
                 'Name': name,
                 'Location': location,
