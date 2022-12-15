@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello/views/sendpackage.dart';
 import 'package:hello/widgets/button.dart';
 import 'package:hello/widgets/formfield.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -13,18 +14,22 @@ class homepage extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
+          top: 40,
+          right: 20,
           child: Button(
             height: 40,
             icon: Icon(
               Icons.add,
               color: HexColor('F1F6F5'),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const sendpack();
+              }));
+            },
             text: 'Send package',
             width: 180,
           ),
-          top: 40,
-          right: 20,
         ),
         Align(
           alignment: Alignment.center,
