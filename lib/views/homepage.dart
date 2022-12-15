@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello/backend/DataBase.dart';
 import 'package:hello/views/sendpackage.dart';
 import 'package:hello/widgets/button.dart';
 import 'package:hello/widgets/formfield.dart';
@@ -56,10 +57,14 @@ class homepage extends StatelessWidget {
               Button(
                 height: 60,
                 icon: Icon(
-                  Icons.arrow_back,
+                  Icons.search,
                   color: HexColor('F1F6F5'),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  DataBase().getpackage(
+                    trackingnumber: searchController.text.trim(),
+                  );
+                },
                 text: 'Search',
                 width: 300,
                 fontSize: 16,

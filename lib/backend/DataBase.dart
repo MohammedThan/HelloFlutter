@@ -30,26 +30,19 @@ class DataBase {
   }
 
   addPackage(
-      String destination,
-      String dimensions,
-      DateTime finalDate,
-      double insurance,
-      String? status,
-      String? type,
-      double weight,
-      double payment,
-      String Receivername,
-      bool? ispaid) {
-    if (ispaid == "") {
-      ispaid = false;
-    }
-    if (status == "") {
-      status = "In_Transit";
-    }
-
-    if (type == "") {
-      type = "Regular";
-    }
+    String destination,
+    String dimensions,
+    DateTime finalDate,
+    double insurance,
+    String? status,
+    String? type,
+    double weight,
+    double payment,
+    String Receivername,
+  ) {
+    bool ispaid = false;
+    status = "In Transit";
+    type = "Regular";
 
     firestore
         .collection("Package")
@@ -96,12 +89,7 @@ class DataBase {
 
     firestore
         .collection("Customer")
-        .add({
-          'Name': name,
-          'Location': location,
-          "Email": email,
-          'Password': password
-        })
+        .add({'Name': name, 'Location': location, "Email": email})
         .then((value) => print("Customer Added"))
         .catchError((error) => print("Failed to add Customer: $error"));
   }
@@ -335,12 +323,23 @@ class DataBase {
         element.reference.update({
           'Name': name,
           'Location': location,
-
-          // doc().update({
-          //   'Name': name,
-          //   'Location': location,
-          // });
         });
+      });
+    });
+  }
+
+  getpackage({required String trackingnumber}) {
+    CollectionReference package = firestore.collection('Package');
+    package
+        .where(
+          'Tracking',
+          isEqualTo: trackingnumber,
+        )
+        .where('Receiver_Id', isEqualTo: getcurrentuser())
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        print(element.data());
       });
     });
   }
