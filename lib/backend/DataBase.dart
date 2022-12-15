@@ -15,16 +15,34 @@ class DataBase {
     print(uid);
   }
 
+  String getuseridbyname(String name) {
+    String id = "";
+    firestore
+        .collection("Customer")
+        .where("Name", isEqualTo: name)
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        id = element.id;
+      });
+    });
+    return id;
+  }
+
   addPackage(
       String destination,
       String dimensions,
       DateTime finalDate,
       double insurance,
-      String status,
-      String type,
+      String? status,
+      String? type,
       double weight,
       double payment,
-      String Receiver_Id) {
+      String Receivername,
+      bool? ispaid) {
+    if (ispaid == "") {
+      ispaid = false;
+    }
     if (status == "") {
       status = "In_Transit";
     }
@@ -45,8 +63,9 @@ class DataBase {
           'Type': type,
           'Status': status,
           'Payment': payment,
-          'Receiver_Id': Receiver_Id,
-          "Sent_Date": DateTime.now()
+          'Receiver_Id': getuseridbyname(Receivername),
+          "Sent_Date": DateTime.now(),
+          "Is_Paid": ispaid,
         })
         .then((value) => print("Package Added"))
         .catchError((error) => print("Failed to add Package: $error"));
@@ -293,6 +312,7 @@ class DataBase {
                 'Email': email,
                 'Name': name,
                 'Location': location,
+                'isAdmin': false,
               }));
       // await myUser.user?.
       print((myUser.runtimeType));
@@ -302,5 +322,26 @@ class DataBase {
       print(e);
       return "error";
     }
+  }
+
+  updateuserinfo(
+    String name,
+    String location,
+  ) {
+    CollectionReference customer = firestore.collection('Customer');
+
+    customer.where('uid', isEqualTo: getcurrentuser()).get().then((value) {
+      value.docs.forEach((element) {
+        element.reference.update({
+          'Name': name,
+          'Location': location,
+
+          // doc().update({
+          //   'Name': name,
+          //   'Location': location,
+          // });
+        });
+      });
+    });
   }
 }

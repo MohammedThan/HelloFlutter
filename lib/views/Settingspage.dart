@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello/backend/DataBase.dart';
 import 'package:hello/views/startview.dart';
+import 'package:hello/views/updateinfo.dart';
 import 'package:hello/widgets/button.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -20,7 +21,10 @@ class settingspage extends StatelessWidget {
               Icons.person,
               color: HexColor('F1F6F5'),
             ),
-            onPressed: () {},
+            onPressed: () {Navigator.push(context,
+                  MaterialPageRoute(builder: (context) {
+                return const updatepage();
+              }));},
             height: 60,
             width: 300,
             fontSize: 16,
