@@ -59,6 +59,7 @@ class DataBase {
           'Receiver_Id': getuseridbyname(Receivername),
           "Sent_Date": DateTime.now(),
           "Is_Paid": ispaid,
+          "SID":"1"
         })
         .then((value) => print("Package Added"))
         .catchError((error) => print("Failed to add Package: $error"));
@@ -301,6 +302,7 @@ class DataBase {
                 'Name': name,
                 'Location': location,
                 'isAdmin': false,
+                'sys_Id':'1',
               }));
       // await myUser.user?.
       print((myUser.runtimeType));
