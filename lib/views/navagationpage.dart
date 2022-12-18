@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/views/Settingspage.dart';
 import 'package:hello/views/homepage.dart';
+import 'package:hello/views/adminpage.dart';
+import 'package:hello/views/addpackagepage.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class navgtion extends StatefulWidget {
