@@ -28,9 +28,7 @@ class adminpage extends StatelessWidget {
               Icons.redo,
               color: HexColor('F1F6F5'),
             ),
-            onPressed: () {
-              backbutton();
-            },
+            onPressed: () => Navigator.of(context).pop(),
             text: 'Exit Admin Mode',
             width: 180,
           ),
