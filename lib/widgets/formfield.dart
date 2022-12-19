@@ -15,23 +15,22 @@ class formField extends StatefulWidget {
   TextInputType? keyboardType;
   double borderWidth;
   String? Function(String?)? validator;
-  bool autofocuse;
 
-  formField(
-      {super.key,
-      this.controller,
-      this.icon,
-      this.hint,
-      this.width,
-      this.obscureText = false,
-      this.filled = false,
-      this.textcolor = Colors.white,
-      this.fillColor,
-      required this.borderColor,
-      this.keyboardType,
-      this.borderWidth = 2.0,
-      this.validator,
-      this.autofocuse = false});
+  formField({
+    super.key,
+    this.controller,
+    this.icon,
+    this.hint,
+    this.width,
+    this.obscureText = false,
+    this.filled = false,
+    this.textcolor = Colors.white,
+    this.fillColor,
+    required this.borderColor,
+    this.keyboardType,
+    this.borderWidth = 2.0,
+    this.validator,
+  });
 
   @override
   State<formField> createState() => _formFieldState();
@@ -41,10 +40,10 @@ class _formFieldState extends State<formField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      
       width: widget.width,
       child: TextFormField(
-        
-        autofocus: widget.autofocuse,
+        autofocus: false,
         obscureText: widget.obscureText,
         validator: widget.validator,
         keyboardType: widget.keyboardType,

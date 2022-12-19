@@ -17,6 +17,7 @@ class addpackagepage extends StatelessWidget {
     TextEditingController nameController = TextEditingController();
     TextEditingController locationController = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         color: HexColor('F1F6F5'),
         child: Stack(
