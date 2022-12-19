@@ -17,6 +17,7 @@ class Loginpage extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         color: HexColor('F1F6F5'),
         child: Stack(

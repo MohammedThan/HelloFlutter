@@ -32,17 +32,15 @@ class DataBase {
   addPackage(
     String destination,
     String dimensions,
-    DateTime finalDate,
+    String finalDate,
     double insurance,
-    String? status,
-    String? type,
     double weight,
     double payment,
     String Receivername,
   ) {
     bool ispaid = false;
-    status = "In Transit";
-    type = "Regular";
+    String status = "In Transit";
+    String type = "Regular";
 
     firestore
         .collection("Package")
