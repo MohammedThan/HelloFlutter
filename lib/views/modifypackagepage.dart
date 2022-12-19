@@ -84,57 +84,60 @@ class modifypackagepage extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Center(
-                    child: Expanded(
-                        child: Row(
-                      children: [
-                        GroupButton(
-                            text: 'Processing',
-                            icon: Icon(
-                              Icons.edit_note,
-                              color: HexColor('F1F6F5'),
-                            ),
-                            onPressed: () {},
-                            height: 50,
-                            width: 150),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        GroupButton(
-                            text: 'Shipped',
-                            icon: Icon(
-                              Icons.flight,
-                              color: HexColor('F1F6F5'),
-                            ),
-                            onPressed: () {},
-                            height: 50,
-                            width: 150),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        GroupButton(
-                            text: 'In Transit',
-                            icon: Icon(
-                              Icons.delivery_dining,
-                              color: HexColor('F1F6F5'),
-                            ),
-                            onPressed: () {},
-                            height: 50,
-                            width: 150),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        GroupButton(
-                            text: 'Delivered',
-                            icon: Icon(
-                              Icons.home,
-                              color: HexColor('F1F6F5'),
-                            ),
-                            onPressed: () {},
-                            height: 50,
-                            width: 150),
-                      ],
-                    )),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Column(children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GroupButton(
+                              text: 'Processing',
+                              icon: Icon(
+                                Icons.edit_note,
+                                color: HexColor('F1F6F5'),
+                              ),
+                              onPressed: () {},
+                              height: 50,
+                              width: 150),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GroupButton(
+                              text: 'Shipped',
+                              icon: Icon(
+                                Icons.flight,
+                                color: HexColor('F1F6F5'),
+                              ),
+                              onPressed: () {},
+                              height: 50,
+                              width: 150),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GroupButton(
+                              text: 'In Transit',
+                              icon: Icon(
+                                Icons.delivery_dining,
+                                color: HexColor('F1F6F5'),
+                              ),
+                              onPressed: () {},
+                              height: 50,
+                              width: 150),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GroupButton(
+                              text: 'Delivered',
+                              icon: Icon(
+                                Icons.home,
+                                color: HexColor('F1F6F5'),
+                              ),
+                              onPressed: () {},
+                              height: 50,
+                              width: 150),
+                        ],
+                      ),
+                    ]),
                   ),
                   const SizedBox(
                     height: 20,

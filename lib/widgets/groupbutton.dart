@@ -16,7 +16,7 @@ class GroupButton extends StatelessWidget {
       required this.onPressed,
       required this.height,
       required this.width,
-      this.fontSize = 14.0});
+      this.fontSize = 16.0});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class GroupButton extends StatelessWidget {
                   height: constraints.maxHeight,
                   width: constraints.maxHeight,
                   decoration: BoxDecoration(
-                      color: HexColor('4B56D2'), borderRadius: borderRadius),
+                      color: HexColor('472183'), borderRadius: borderRadius),
                   child: this.icon,
                 );
               }),
